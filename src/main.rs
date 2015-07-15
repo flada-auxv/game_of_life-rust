@@ -1,6 +1,8 @@
 use std::fmt;
 use std::io;
 
+#[allow(unused_variables)]
+#[allow(unused_must_use)]
 fn main() {
     let traffic_light = vec!((4,2), (4,3), (4,4), (4,5), (4,6));
     let galaxy = vec!(
