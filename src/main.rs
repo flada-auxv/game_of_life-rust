@@ -89,8 +89,8 @@ impl Board {
         )
     }
 
-    fn neighbours_count(&self, cell: (isize, isize)) -> isize {
-        self.neighbours(cell).iter().filter(|&neighbour| self.is_alive(neighbour.clone())).count() as isize
+    fn neighbours_count(&self, cell: (isize, isize)) -> usize {
+        self.neighbours(cell).iter().filter(|&neighbour| self.is_alive(neighbour.clone())).count()
     }
 }
 
