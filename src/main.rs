@@ -20,7 +20,7 @@ fn main() {
     let mut board = Board { width: 50, height: 20, live_cells: galaxy };
 
     let mut reader = io::stdin();
-    let string =  &mut String::new();
+    let string = &mut String::new();
 
     board.display();
 
