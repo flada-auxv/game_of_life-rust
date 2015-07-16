@@ -76,9 +76,7 @@ impl Board {
         ).collect()
     }
 
-    fn neighbours(&self, cell: (isize, isize)) -> Vec<(isize, isize)> {
-        let (x, y) = cell;
-
+    fn neighbours(&self, (x, y): (isize, isize)) -> Vec<(isize, isize)> {
         vec!(
             (x - 1, y - 1),
             (x - 1, y    ),
