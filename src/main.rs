@@ -89,8 +89,7 @@ impl Board {
 
 impl fmt::Debug for Board {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        // 文字列結合えんどくさすぎぃぃぃぃぃぃぃぃっぃぃぃっぃ
-        let mut board = vec!();
+        let mut board = String::new();
         let cells = self.all_cells();
 
         for x in (0..self.height) {
@@ -100,11 +99,11 @@ impl fmt::Debug for Board {
                     true => "■",
                     false => "□"
                 };
-                board.push(cell_str);
+                board = board + cell_str;
             }
-            board.push("\n")
+            board = board + "\n";
         }
 
-        write!(f, "{}", board.concat())
+        write!(f, "{}", board)
     }
 }
