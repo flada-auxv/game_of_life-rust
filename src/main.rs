@@ -42,16 +42,9 @@ struct Board {
 
 impl Board {
     fn all_cells(&self) -> Vec<(isize, isize)> {
-        let mut all_cells = vec!();
-
-        // map 使えなかった… orz
-        for x in (0..self.height) {
-            for y in (0..self.width) {
-                all_cells.push((x, y));
-            }
-        }
-
-        all_cells
+        (0..self.height).into_iter().flat_map(|x|
+            (0..self.width).into_iter().map(|y| (x, y) ).collect::<Vec<_>>()
+        ).collect()
     }
 
     fn tick(&self) -> Board {
