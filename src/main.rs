@@ -55,13 +55,13 @@ impl Board {
         println!("{:?}", self);
     }
 
-    fn is_alive(&self, cell: (isize, isize)) -> bool {
-        self.live_cells.iter().any(|live_cell| cell.eq(&live_cell))
+    fn is_alive(&self, cell: &(isize, isize)) -> bool {
+        self.live_cells.iter().any(|live_cell| live_cell.eq(cell))
     }
 
     fn live_cells_next_go(&self) -> Vec<(isize, isize)> {
         self.all_cells().iter().filter_map(|cell|
-            match (self.is_alive(*cell), self.neighbours_count(*cell)) {
+            match (self.is_alive(cell), self.neighbours_count(cell)) {
                 (true, 2) => Some(*cell),
                 (_, 3)    => Some(*cell),
                 _ => None,
@@ -69,7 +69,7 @@ impl Board {
         ).collect()
     }
 
-    fn neighbours(&self, (x, y): (isize, isize)) -> Vec<(isize, isize)> {
+    fn neighbours(&self, &(x, y): &(isize, isize)) -> Vec<(isize, isize)> {
         vec!(
             (x - 1, y - 1),
             (x - 1, y    ),
@@ -82,8 +82,8 @@ impl Board {
         )
     }
 
-    fn neighbours_count(&self, cell: (isize, isize)) -> usize {
-        self.neighbours(cell).iter().filter(|&neighbour| self.is_alive(neighbour.clone())).count()
+    fn neighbours_count(&self, cell: &(isize, isize)) -> usize {
+        self.neighbours(cell).iter().filter(|neighbour| self.is_alive(neighbour)).count()
     }
 }
 
@@ -95,7 +95,7 @@ impl fmt::Debug for Board {
         for x in (0..self.height) {
             for y in (0..self.width) {
                 let idx = (x * self.width) + y;
-                let cell_str = match self.is_alive(cells[idx as usize].clone()) {
+                let cell_str = match self.is_alive(&cells[idx as usize]) {
                     true => "■",
                     false => "□"
                 };
